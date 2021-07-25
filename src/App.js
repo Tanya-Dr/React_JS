@@ -1,5 +1,8 @@
+import { Message } from './components/Message/Message';
 import logo from './logo.svg';
 import './App.css';
+
+const msg = "from Tanya!";
 
 function App() {
   return (
@@ -7,16 +10,9 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Hello, React,
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Message text={msg}/>
       </header>
     </div>
   );
