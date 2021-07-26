@@ -1,19 +1,42 @@
+import { useState, useCallback, useEffect } from 'react';
 import { Message } from './components/Message/Message';
-import logo from './logo.svg';
+import { InputMessage } from './components/InputMessage/InputMessage';
 import './App.css';
 
-const msg = "from Tanya!";
-
 function App() {
+  const [messageList, setMessageList] = useState([]);
+
+  useEffect(() =>{
+    const timer = setTimeout(() => {
+      if (messageList.length && messageList[messageList.length - 1].author !== 'Robot') {
+        const robotMess = {author: 'Robot', text: 'Hello, can I help you?'};
+        setMessageList([...messageList, robotMess]);
+      }
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, [messageList])
+
+  const sendMessage = useCallback((textMessage) => {
+    if (textMessage.length !== 0) {
+      const newMessage = {author: "Me", text: `${textMessage}`};
+
+      setMessageList([...messageList, newMessage]);
+    }    
+  }, [messageList]);
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello, React,
-        </p>
-        <Message text={msg}/>
-      </header>
+      <div className="wrapper">
+        <header className="App-header">
+          <p>
+            Hello, welcome to the Chat!
+          </p>  
+        </header>
+        <div className="App-chat">
+          <Message list={messageList}/>
+          <InputMessage onClick={sendMessage}/>
+        </div>
+      </div>
     </div>
   );
 }
