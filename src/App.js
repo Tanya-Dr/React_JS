@@ -7,18 +7,18 @@ function App() {
   const [messageList, setMessageList] = useState([]);
 
   useEffect(() =>{
-    const timer = setTimeout(() => {
-      if (messageList.length && messageList[messageList.length - 1].author !== 'Robot') {
-        const robotMess = {author: 'Robot', text: 'Hello, can I help you?'};
+    if (messageList.length && messageList[messageList.length - 1].author !== 'Robot') {
+      const timer = setTimeout(() => {
+        const robotMess = {author: 'Robot', text: 'Hello, can I help you?', id: Date.now()};
         setMessageList([...messageList, robotMess]);
-      }
-    }, 1500);
-    return () => clearTimeout(timer);
-  }, [messageList])
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [messageList]);
 
   const sendMessage = useCallback((textMessage) => {
     if (textMessage.length !== 0) {
-      const newMessage = {author: "Me", text: `${textMessage}`};
+      const newMessage = {author: "Me", text: `${textMessage}`, id: Date.now()};
 
       setMessageList([...messageList, newMessage]);
     }    
@@ -34,7 +34,7 @@ function App() {
         </header>
         <div className="App-chat">
           <Message list={messageList}/>
-          <InputMessage onClick={sendMessage}/>
+          <InputMessage onSendMessage={sendMessage}/>
         </div>
       </div>
     </div>
