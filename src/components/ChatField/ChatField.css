@@ -1,0 +1,20 @@
+.chat__list {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+}
+
+.chat__header {
+    margin: 0;
+    padding: 16px;
+    background-color: #c5d6e6;
+}
+
+.MuiListItem-root {
+    border-bottom: 1px solid #EAEAEA;
+    transition: all 0.3s;
+}
+
+.MuiListItem-root:hover {
+    background-color: #EAEAEA;
+}

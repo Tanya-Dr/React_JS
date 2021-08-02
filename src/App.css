@@ -1,35 +1,14 @@
 .App {
   color: #1F3F68;
-  text-align: center;
-  background-color: #ffffff;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   min-height: 100vh;
 }
 
-.App-header {
-  font-size: calc(10px + 2vmin);
+.OpenedChat {
   flex-grow: 1;
-}
-
-.App-chat {
-  background: #FFFFFF;
-  font-size: 16px;
-  line-height: 30px;
-  letter-spacing: 0.04em;
+  border-left: 1px solid #c4c3c3;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  box-sizing: border-box;
-}
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  width: 540px;
-  /* border-radius: 10px; */
-  box-shadow: 5px 10px 50px rgb(16 112 177 / 20%);
-  min-height: 100vh;
+  /* max-width: 65%; */
+  height: 100vh;
 }
