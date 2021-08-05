@@ -5,6 +5,7 @@ import { MessageField } from "../MessageField";
 import { ChatField } from "../ChatField";
 import { AUTHORS } from "../../constants";
 import "./Chats.css";
+import { usePrev } from "../UsePrev";
 
 const initialChats = {
   chat1: {
@@ -28,6 +29,8 @@ function Chats() {
   const [chatList, setChatList] = useState(initialChats);
   const { chatId } = useParams();
 
+  const prevChatList = usePrev(chatList);
+
   const sendMessage = useCallback(
     (newMessage) => {
       if (newMessage.text.length !== 0) {
@@ -45,13 +48,11 @@ function Chats() {
 
   const deleteChat = useCallback(
     (chat) => {
-      // if (chat === chatId) {
-      //   return;
-      // }
-      delete chatList[chat];
-      setChatList({ ...chatList });
+      const newChatList = { ...chatList };
+      delete newChatList[chat];
+      setChatList({ ...newChatList });
     },
-    [chatList, chatId]
+    [chatList]
   );
 
   const addChat = useCallback(() => {
@@ -83,9 +84,11 @@ function Chats() {
       }, 1500);
       return () => clearTimeout(timer);
     }
-  }, [chatList, chatId]);
+  }, [chatList, chatId, sendMessage]);
 
-  if (!!chatId && !chatList[chatId]) {
+  if (!!prevChatList && !!prevChatList[chatId] && !chatList[chatId]) {
+    return <Redirect to="/chats" />;
+  } else if (!!chatId && !chatList[chatId]) {
     return <Redirect to="/nochat" />;
   }
 

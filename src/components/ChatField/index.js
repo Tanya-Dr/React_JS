@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -20,12 +20,6 @@ export const ChatField = ({
   onAddChat,
   idSelected,
 }) => {
-  const [selectedIndex, setSelectedIndex] = useState(idSelected);
-
-  const handleListItemClick = (event, index) => {
-    setSelectedIndex(index);
-  };
-
   const handleDeleteChat = (event, id) => {
     onDeleteChat(id);
   };
@@ -59,8 +53,7 @@ export const ChatField = ({
             alignItems="flex-start"
             button
             divider={true}
-            selected={selectedIndex === chat.id}
-            onClick={(event) => handleListItemClick(event, chat.id)}
+            selected={idSelected === chat.id}
             key={chat.id}
           >
             <Link to={`/chats/${chat.id}`} className="chat__link" key={chat.id}>
