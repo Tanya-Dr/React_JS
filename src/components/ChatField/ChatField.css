@@ -1,20 +1,53 @@
 .chat__list {
-    display: flex;
-    flex-direction: column;
-    width: 25%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #c4c3c3;
+  width: 25%;
+  height: calc(100vh - 70px);
+}
+
+.chat__top {
+  background-color: #c5d6e6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 16px;
 }
 
 .chat__header {
-    margin: 0;
-    padding: 16px;
-    background-color: #c5d6e6;
+  margin: 0;
 }
 
-.MuiListItem-root {
-    border-bottom: 1px solid #EAEAEA;
-    transition: all 0.3s;
+.chat__link {
+  display: block;
+  color: rgba(0, 0, 0, 0.87);
+  width: 100%;
 }
 
-.MuiListItem-root:hover {
-    background-color: #EAEAEA;
+.MuiList-root {
+  background-color: white;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.MuiList-root::-webkit-scrollbar {
+  width: 5px;
+  background-color: #f9f9fd;
+}
+
+.MuiList-root::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.MuiList-root::-webkit-scrollbar-track {
+  background-color: #ffffff;
+}
+
+.MuiTypography-displayBlock {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
