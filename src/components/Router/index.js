@@ -1,7 +1,6 @@
 import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
 import Chats from "../Chats";
 import { Home } from "../Home";
-import { NoChat } from "../NoChat";
 import { Profile } from "../Profile";
 import "./Router.css";
 
@@ -10,9 +9,6 @@ export const Router = () => {
     <BrowserRouter>
       <header className="nav center">
         <ul>
-          <li>
-            <Link to="/">HOME</Link>
-          </li>
           <li>
             <Link to="/chats">CHATS</Link>
           </li>
@@ -30,13 +26,16 @@ export const Router = () => {
           <Profile />
         </Route>
         <Route path="/nochat">
-          <NoChat />
+          <Home
+            id="nochat"
+            txt="There is wrong chat, please select chat from"
+          />
         </Route>
         <Route path="/" exact>
-          <Home />
+          <Home id="home" txt="WELCOME" />
         </Route>
         <Route path="*">
-          <h2 className="center">Page not found</h2>
+          <Home id="pageNotFound" txt="Page not found" />
         </Route>
       </Switch>
     </BrowserRouter>
