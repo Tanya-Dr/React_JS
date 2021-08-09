@@ -1,14 +1,13 @@
-.App {
-  color: #1F3F68;
-  display: flex;
-  min-height: 100vh;
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
 }
 
-.OpenedChat {
-  flex-grow: 1;
-  border-left: 1px solid #c4c3c3;
+.wrapper {
   display: flex;
   flex-direction: column;
-  /* max-width: 65%; */
   height: 100vh;
 }
