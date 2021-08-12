@@ -20,7 +20,7 @@
   height: calc(100vh - 70px);
 }
 
-.openedChat__header {
+.App_openedChat__header {
   background-color: #c5d6e6;
   text-align: center;
   align-items: center;

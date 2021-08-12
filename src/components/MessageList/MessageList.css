@@ -22,13 +22,5 @@
 }
 
 .messageList__header {
-  background-color: #c5d6e6;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  box-sizing: border-box;
   height: 82px;
-  margin: 0;
-  padding: 16px;
 }

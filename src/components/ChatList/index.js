@@ -1,3 +1,4 @@
+import "./ChatList.css";
 import React from "react";
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
@@ -8,25 +9,25 @@ import {
   Typography,
   ListItemSecondaryAction,
   IconButton,
-  Fab,
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
-import AddIcon from "@material-ui/icons/Add";
-import "./ChatField.css";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteChat } from "../../store/chats/actions";
+import { selectChatList } from "../../store/chats/selectors";
+import { selectMsgList } from "../../store/messages/selectors";
+import { FormChat } from "../FormChat";
+import { deleteChatFromMsgList } from "../../store/messages/actions";
 
-export const ChatField = ({
-  chatList,
-  onDeleteChat,
-  onAddChat,
-  idSelected,
-}) => {
+export const ChatList = ({ idSelected }) => {
+  const chatList = useSelector(selectChatList);
+  const messageList = useSelector(selectMsgList);
+  const dispatch = useDispatch();
+
   const handleDeleteChat = (event, id) => {
-    onDeleteChat(id);
+    dispatch(deleteChat(id));
+    dispatch(deleteChatFromMsgList(id));
   };
 
-  const handleAddChat = (event) => {
-    onAddChat();
-  };
   const chatsEndRef = useRef(null);
   const scrollToBottom = () => {
     chatsEndRef.current.scrollIntoView({ behavior: "smooth" });
@@ -38,14 +39,7 @@ export const ChatField = ({
     <div className="chat__list">
       <div className="chat__top">
         <h2 className="chat__header">Chats</h2>
-        <Fab
-          size="small"
-          color="primary"
-          aria-label="add"
-          onClick={handleAddChat}
-        >
-          <AddIcon />
-        </Fab>
+        <FormChat />
       </div>
       <List disablePadding={true}>
         {Object.values(chatList).map((chat) => (
@@ -66,12 +60,19 @@ export const ChatField = ({
                       variant="body2"
                       color="textPrimary"
                     >
-                      {chat.messages.length
-                        ? `${chat.messages[chat.messages.length - 1].author} `
+                      {!!messageList[chat.id] && messageList[chat.id].length
+                        ? `${
+                            messageList[chat.id][
+                              messageList[chat.id].length - 1
+                            ].author
+                          } `
                         : ""}
                     </Typography>
-                    {chat.messages.length
-                      ? chat.messages[chat.messages.length - 1].text
+                    {!!messageList[chat.id] && messageList[chat.id].length
+                      ? `${
+                          messageList[chat.id][messageList[chat.id].length - 1]
+                            .text
+                        } `
                       : ""}
                   </React.Fragment>
                 }

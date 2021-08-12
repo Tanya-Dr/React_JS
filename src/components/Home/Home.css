@@ -1,3 +1,15 @@
 .home {
   width: 100%;
 }
+.nochat__header {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.nochat__link {
+  color: #1f3f68;
+  text-decoration: underline;
+}
+.nochat__link:hover {
+  color: #12243b;
+}
