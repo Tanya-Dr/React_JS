@@ -5,7 +5,7 @@ import { MessageField } from "../MessageField";
 import { ChatField } from "../ChatField";
 import { AUTHORS } from "../../constants";
 import "./Chats.css";
-import { usePrev } from "../UsePrev";
+import { usePrev } from "../../utils/UsePrev";
 
 const initialChats = {
   chat1: {
