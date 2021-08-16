@@ -1,21 +1,15 @@
 import "./FormMessage.css";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
 import { Icon, Button, TextField } from "@material-ui/core";
-import { AUTHORS } from "../../constants";
-import { useDispatch, useSelector } from "react-redux";
-import { addMessage } from "../../store/messages/actions";
-import { selectName } from "../../store/profile/selector";
+import { addMessageWithReply } from "../../store/messages/actions";
+import { useInput } from "../../utils/UseInput";
 
-export const FormMessage = ({ chatId }) => {
-  const [value, setValue] = useState("");
+export const FormMessage = ({ chatId, profileName }) => {
+  const { value, handleChange, reset } = useInput("");
   const inputRef = useRef(null);
 
   const dispatch = useDispatch();
-  const name = useSelector(selectName);
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,10 +21,11 @@ export const FormMessage = ({ chatId }) => {
     const newMsg = {
       id: Date.now(),
       text: value,
-      author: name.length === 0 ? AUTHORS.human : name,
+      author: profileName,
     };
-    dispatch(addMessage(chatId, newMsg));
-    setValue("");
+
+    dispatch(addMessageWithReply(chatId, newMsg));
+    reset();
     inputRef.current?.focus();
   };
 
