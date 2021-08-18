@@ -1,0 +1,11 @@
+.chat__link {
+  display: block;
+  color: rgba(0, 0, 0, 0.87);
+  width: 100%;
+}
+
+.MuiTypography-displayBlock {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
