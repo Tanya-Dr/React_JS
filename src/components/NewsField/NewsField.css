@@ -1,0 +1,21 @@
+.MuiList-root {
+  width: 100%;
+}
+
+.MuiCircularProgress-root {
+  align-self: center;
+  margin-top: 20px;
+}
+
+.MuiTypography-root {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.news__link {
+  color: #1f3f68;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
