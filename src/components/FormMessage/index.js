@@ -2,7 +2,10 @@ import "./FormMessage.css";
 import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { Icon, Button, TextField } from "@material-ui/core";
-import { addMessageWithReply } from "../../store/messages/actions";
+import {
+  addMessageWithReply,
+  sendMessageWithFB,
+} from "../../store/messages/actions";
 import { useInput } from "../../utils/UseInput";
 
 export const FormMessage = ({ chatId, profileName }) => {
@@ -24,7 +27,8 @@ export const FormMessage = ({ chatId, profileName }) => {
       author: profileName,
     };
 
-    dispatch(addMessageWithReply(chatId, newMsg));
+    // dispatch(addMessageWithReply(chatId, newMsg));
+    dispatch(sendMessageWithFB(chatId, newMsg));
     reset();
     inputRef.current?.focus();
   };

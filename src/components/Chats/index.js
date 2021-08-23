@@ -1,5 +1,5 @@
 import "./Chats.css";
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { Redirect, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -11,8 +11,16 @@ import { usePrev } from "../../utils/UsePrev";
 import { getNameChatById, selectChatList } from "../../store/chats/selectors";
 import { getMsgListById, selectMsgList } from "../../store/messages/selectors";
 import { selectName } from "../../store/profile/selector";
-import { deleteChat } from "../../store/chats/actions";
-import { deleteChatFromMsgList } from "../../store/messages/actions";
+import {
+  connectChatsToFB,
+  deleteChat,
+  deleteChatWithFB,
+} from "../../store/chats/actions";
+import {
+  connectMessagesToFB,
+  deleteChatFromMsgList,
+  delMsgFromDelChatWithFB,
+} from "../../store/messages/actions";
 
 function Chats() {
   const { chatId } = useParams();
@@ -29,10 +37,15 @@ function Chats() {
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(connectChatsToFB());
+    dispatch(connectMessagesToFB());
+  }, []);
+
   const handleDeleteChat = useCallback(
     (id) => {
-      dispatch(deleteChat(id));
-      dispatch(deleteChatFromMsgList(id));
+      dispatch(deleteChatWithFB(id));
+      dispatch(delMsgFromDelChatWithFB(id));
     },
     [dispatch]
   );
