@@ -11,14 +11,9 @@ import { usePrev } from "../../utils/UsePrev";
 import { getNameChatById, selectChatList } from "../../store/chats/selectors";
 import { getMsgListById, selectMsgList } from "../../store/messages/selectors";
 import { selectName } from "../../store/profile/selector";
-import {
-  connectChatsToFB,
-  deleteChat,
-  deleteChatWithFB,
-} from "../../store/chats/actions";
+import { connectChatsToFB, deleteChatWithFB } from "../../store/chats/actions";
 import {
   connectMessagesToFB,
-  deleteChatFromMsgList,
   delMsgFromDelChatWithFB,
 } from "../../store/messages/actions";
 

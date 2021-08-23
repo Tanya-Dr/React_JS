@@ -5,10 +5,8 @@ import { useDispatch } from "react-redux";
 import { Button, Dialog, DialogTitle, Fab, TextField } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 
-import { addChat, addChatWithFB } from "../../store/chats/actions";
-import { addChatToMsgList } from "../../store/messages/actions";
-
 import { useInput } from "../../utils/UseInput";
+import { addChatWithFB } from "../../store/chats/actions";
 
 export const FormChat = () => {
   const [visible, setVisible] = useState(false);
@@ -28,8 +26,6 @@ export const FormChat = () => {
 
     const newIdChat = `chat${Date.now()}`;
     dispatch(addChatWithFB(newIdChat, value));
-    // dispatch(addChat(newIdChat, value));
-    // dispatch(addChatToMsgList(newIdChat));
     reset();
     handleClose();
   };

@@ -1,5 +1,7 @@
 import "./Login.css";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   Button,
   FormControl,
@@ -10,16 +12,16 @@ import {
   TextField,
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
-import { useInput } from "../../utils/UseInput";
-import { Link } from "react-router-dom";
 import { SignUp } from "./SignUp";
-import { useDispatch, useSelector } from "react-redux";
+import { useInput } from "../../utils/UseInput";
 import { selectProfileError } from "../../store/profile/selector";
 import { loginWithFB, signUpWithFB } from "../../store/profile/actions";
 
 export const Login = ({ isSignUp }) => {
   const dispatch = useDispatch();
   const error = useSelector(selectProfileError);
+
+  const inputRef = useRef(null);
 
   const {
     value: email,
@@ -57,10 +59,9 @@ export const Login = ({ isSignUp }) => {
     }
   };
 
-  if (error) {
-    resetEmail();
-    resetPassword();
-  }
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [isSignUp]);
 
   return (
     <div className="App">
@@ -81,7 +82,9 @@ export const Login = ({ isSignUp }) => {
             placeholder="email"
             value={email}
             onChange={handleChangeEmail}
+            inputRef={inputRef}
             required
+            error={error}
           />
           <FormControl variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">
@@ -106,6 +109,7 @@ export const Login = ({ isSignUp }) => {
               }
               labelWidth={70}
               fullWidth
+              error={error}
             />
           </FormControl>
           {isSignUp && <SignUp />}

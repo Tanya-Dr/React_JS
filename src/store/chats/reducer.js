@@ -1,14 +1,5 @@
 import { ADD_CHAT, DELETE_CHAT, SET_CHATS, SET_ERROR } from "./actionTypes";
 
-// const initialState = {
-//   //to be stored like this [{id, name}]
-//   chatList: [
-//     { id: "chat1", name: "Chat 1" },
-//     { id: "chat2", name: "Chat 2" },
-//     { id: "chat3", name: "Chat 3" },
-//   ],
-// };
-
 const initialState = {
   //chatList will be stored like this [{id, name}]
   chatList: [],

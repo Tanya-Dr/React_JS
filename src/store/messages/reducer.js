@@ -7,15 +7,6 @@ import {
   SET_MESSAGES,
 } from "./actionTypes";
 
-// const initialState = {
-//   //to be stored like this {[chatId]:[{id, text, author}]}
-//   messageList: {
-//     chat1: [{ id: "chat1-1", text: "Hello world!", author: AUTHORS.human }],
-//     chat2: [{ id: "chat2-1", text: "This is chat2", author: AUTHORS.human }],
-//     chat3: [],
-//   },
-// };
-
 const initialState = {
   //messageList will be stored like this {[chatId]:[{author, chatId, id, text}]}
   messageList: {},
