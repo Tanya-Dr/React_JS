@@ -3,6 +3,7 @@ import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
 import Chats from "../Chats";
 import { Home } from "../Home";
 import { Profile } from "../Profile";
+import { News } from "../News";
 
 export const Router = () => {
   return (
@@ -15,6 +16,9 @@ export const Router = () => {
           <li>
             <Link to="/profile">PROFILE</Link>
           </li>
+          <li>
+            <Link to="/news">NEWS</Link>
+          </li>
         </ul>
       </header>
 
@@ -24,6 +28,9 @@ export const Router = () => {
         </Route>
         <Route path="/profile">
           <Profile />
+        </Route>
+        <Route path="/news">
+          <News />
         </Route>
         <Route path="/nochat">
           <Home

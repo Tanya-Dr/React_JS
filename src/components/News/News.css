@@ -1,11 +1,9 @@
-.profile__form {
+.news {
   padding: 16px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
-}
-
-.profile__text {
-  color: #1f3f6841;
+  height: 100%;
+  overflow-y: auto;
 }
