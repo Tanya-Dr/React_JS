@@ -68,7 +68,6 @@ function Chats() {
         idSelected={!!chatId ? chatId : ""}
         chatList={chatList}
         msgList={messageList}
-        profileName={name}
         onDeleteChat={handleDeleteChat}
       />
       <div className="App_openedChat">

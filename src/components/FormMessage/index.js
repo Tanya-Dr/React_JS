@@ -1,15 +1,25 @@
 import "./FormMessage.css";
-import { useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useMemo, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Icon, Button, TextField } from "@material-ui/core";
-import { sendMessageWithFB } from "../../store/messages/actions";
+import {
+  addMessageWithReply,
+  sendMessageWithFB,
+} from "../../store/messages/actions";
 import { useInput } from "../../utils/UseInput";
+import { getRobotFlag } from "../../store/chats/selectors";
 
 export const FormMessage = ({ chatId, profileName }) => {
   const { value, handleChange, reset } = useInput("");
   const inputRef = useRef(null);
 
   const dispatch = useDispatch();
+
+  const getSelectedChatRobotFlag = useMemo(
+    () => getRobotFlag(chatId),
+    [chatId]
+  );
+  const selectedChatRobotFlag = useSelector(getSelectedChatRobotFlag);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,7 +34,12 @@ export const FormMessage = ({ chatId, profileName }) => {
       author: profileName,
     };
 
-    dispatch(sendMessageWithFB(chatId, newMsg));
+    if (selectedChatRobotFlag) {
+      dispatch(addMessageWithReply(chatId, newMsg));
+    } else {
+      dispatch(sendMessageWithFB(chatId, newMsg));
+    }
+
     reset();
     inputRef.current?.focus();
   };

@@ -3,15 +3,8 @@ import React, { useCallback } from "react";
 import { List } from "@material-ui/core";
 import { FormChat } from "../FormChat";
 import { ChatItem } from "../ChatItem";
-import { AUTHORS } from "../../constants";
 
-export const ChatList = ({
-  idSelected,
-  chatList,
-  msgList,
-  profileName,
-  onDeleteChat,
-}) => {
+export const ChatList = ({ idSelected, chatList, msgList, onDeleteChat }) => {
   const renderChats = useCallback(
     (chat) => (
       <ChatItem
@@ -21,10 +14,7 @@ export const ChatList = ({
         name={chat.name}
         lastAuthor={
           !!msgList[chat.id] && msgList[chat.id].length
-            ? msgList[chat.id][msgList[chat.id].length - 1].author ===
-              AUTHORS.human
-              ? profileName
-              : msgList[chat.id][msgList[chat.id].length - 1].author
+            ? msgList[chat.id][msgList[chat.id].length - 1].author
             : ""
         }
         lastText={
@@ -35,7 +25,7 @@ export const ChatList = ({
         onDeleteChat={onDeleteChat}
       />
     ),
-    [idSelected, onDeleteChat, msgList, profileName]
+    [idSelected, onDeleteChat, msgList]
   );
 
   return (

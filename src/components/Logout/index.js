@@ -1,5 +1,4 @@
 import "./Logout.css";
-
 import { useDispatch } from "react-redux";
 import { logoutWithFB } from "../../store/profile/actions";
 

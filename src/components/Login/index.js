@@ -2,6 +2,7 @@ import "./Login.css";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
 import {
   Button,
   FormControl,
@@ -12,6 +13,7 @@ import {
   TextField,
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
+
 import { SignUp } from "./SignUp";
 import { useInput } from "../../utils/UseInput";
 import { selectProfileError } from "../../store/profile/selector";
@@ -23,29 +25,20 @@ export const Login = ({ isSignUp }) => {
 
   const inputRef = useRef(null);
 
-  const {
-    value: email,
-    handleChange: handleChangeEmail,
-    reset: resetEmail,
-  } = useInput("");
+  const { value: email, handleChange: handleChangeEmail } = useInput("");
+  const { value: password, handleChange: handleChangePassword } = useInput("");
 
-  const {
-    value: password,
-    handleChange: handleChangePassword,
-    reset: resetPassword,
-  } = useInput("");
-
+  const [errorName, setErrorName] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
-
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e, name, dateBirth, gender) => {
     e.preventDefault();
 
     if (!email || !password) {
@@ -53,7 +46,13 @@ export const Login = ({ isSignUp }) => {
     }
 
     if (isSignUp) {
-      dispatch(signUpWithFB(email, password));
+      if (!name) {
+        setErrorName(true);
+        return;
+      } else {
+        setErrorName(false);
+      }
+      dispatch(signUpWithFB(email, password, name, dateBirth, gender));
     } else {
       dispatch(loginWithFB(email, password));
     }
@@ -112,15 +111,22 @@ export const Login = ({ isSignUp }) => {
               error={error}
             />
           </FormControl>
-          {isSignUp && <SignUp />}
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleSubmit}
-            type="submit"
-          >
-            {isSignUp ? "SIGN UP" : "LOG IN"}
-          </Button>
+          {isSignUp ? (
+            <SignUp
+              onSubmit={handleSubmit}
+              txtButton="SIGN UP"
+              errorName={errorName}
+            />
+          ) : (
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleSubmit}
+              type="submit"
+            >
+              LOG IN
+            </Button>
+          )}
           {error && <span className="login_signup__error">{error}</span>}
         </form>
         <div className="login__link">

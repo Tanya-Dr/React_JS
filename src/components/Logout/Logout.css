@@ -6,10 +6,10 @@
   cursor: pointer;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-weight: 500;
-  padding: 4px 10px;
   color: #fff;
   display: inline-flex;
   outline: 0;
+  padding: 4px 10px;
   margin-top: -5px;
   transition: all 0.3s;
 }

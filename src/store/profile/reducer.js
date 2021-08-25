@@ -1,31 +1,14 @@
-import {
-  PROFILE_CHANGE_NAME,
-  PROFILE_TOGGLE_SHOW,
-  SET_AUTH,
-  SET_ERROR,
-} from "./actionTypes";
+import { SET_AUTH, SET_ERROR, SET_PROFILE } from "./actionTypes";
 
 const initialState = {
-  showName: false,
-  name: "",
+  //profile will be stored like this [{usesrTd, name, dateBirth, gender}]
+  profile: [],
   authorized: false,
   error: null,
 };
 
 export const profileReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case PROFILE_TOGGLE_SHOW: {
-      return {
-        ...state,
-        showName: !state.showName,
-      };
-    }
-    case PROFILE_CHANGE_NAME: {
-      return {
-        ...state,
-        name: payload,
-      };
-    }
     case SET_AUTH: {
       return {
         ...state,
@@ -37,6 +20,12 @@ export const profileReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         error: payload,
+      };
+    }
+    case SET_PROFILE: {
+      return {
+        ...state,
+        profile: payload,
       };
     }
     default:

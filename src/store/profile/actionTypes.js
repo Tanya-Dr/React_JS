@@ -1,5 +1,4 @@
-export const PROFILE_TOGGLE_SHOW = "PROFILE::TOGGLE_SHOW";
-export const PROFILE_CHANGE_NAME = "PROFILE::CHANGE_NAME";
-
 export const SET_AUTH = "PROFILE::SET_AUTH";
 export const SET_ERROR = "PROFILE::SET_ERROR";
+
+export const SET_PROFILE = "PROFILE::SET_PROFILE";
