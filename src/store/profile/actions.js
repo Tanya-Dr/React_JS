@@ -66,6 +66,7 @@ export const signUpWithFB =
 export const logoutWithFB = () => async (dispatch) => {
   try {
     await auth.signOut();
+    dispatch(setProfile({}));
   } catch (e) {
     dispatch(setError(e.message));
   }
