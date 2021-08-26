@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`newsReducer returns state with status error(3) and value error after getNewsError action 1`] = `
+Object {
+  "data": Array [],
+  "request": Object {
+    "error": "error",
+    "status": 3,
+  },
+}
+`;
+
+exports[`newsReducer returns state with status success(2) and list of news in data after getNewsSuccess action 1`] = `
+Object {
+  "data": Array [
+    "news",
+  ],
+  "request": Object {
+    "error": null,
+    "status": 2,
+  },
+}
+`;

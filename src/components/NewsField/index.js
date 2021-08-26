@@ -16,7 +16,7 @@ export const NewsField = ({ loading, error, onRequestNews, news }) => {
   );
 
   if (loading) {
-    return <CircularProgress size={"6rem"} />;
+    return <CircularProgress size={"6rem"} data-testid="circul-element" />;
   }
 
   if (error) {
