@@ -4,6 +4,9 @@
   height: 150px;
   padding-top: 15px;
   padding-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .nav ul {

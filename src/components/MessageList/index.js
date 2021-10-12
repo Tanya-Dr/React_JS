@@ -1,6 +1,5 @@
 import "./MessageList.css";
 import { useCallback, useEffect, useRef } from "react";
-import { AUTHORS } from "../../constants";
 import { Message } from "../Message";
 
 export const MessageList = ({ messageList, chatName, profileName }) => {
@@ -8,8 +7,9 @@ export const MessageList = ({ messageList, chatName, profileName }) => {
     (message) => (
       <Message
         key={message.id}
-        author={message.author === AUTHORS.human ? profileName : message.author}
+        author={message.author}
         text={message.text}
+        profileName={profileName}
       />
     ),
     [profileName]

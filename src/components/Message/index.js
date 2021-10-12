@@ -1,11 +1,10 @@
 import "./Message.css";
-import { AUTHORS } from "../../constants";
 
-export const Message = ({ author, text }) => {
+export const Message = ({ author, text, profileName }) => {
   return (
     <div
       className={`message ${
-        author === AUTHORS.robot ? "message_robot" : "message_user"
+        author !== profileName ? "message_anotherUser" : "message_user"
       }`}
     >
       <p className="message__author">{author}</p>

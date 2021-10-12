@@ -3,7 +3,7 @@ import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { NewsField } from "../NewsField";
-import { getNews } from "../../store/news/action";
+import { getNews } from "../../store/news/actions";
 import {
   selectNews,
   selectNewsError,

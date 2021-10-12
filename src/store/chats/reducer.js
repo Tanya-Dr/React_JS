@@ -1,34 +1,23 @@
-import { ADD_CHAT, DELETE_CHAT } from "./actionTypes";
+import { SET_CHATS, SET_ERROR } from "./actionTypes";
 
 const initialState = {
-  //to be stored like this [{id, name}]
-  chatList: [
-    { id: "chat1", name: "Chat 1" },
-    { id: "chat2", name: "Chat 2" },
-    { id: "chat3", name: "Chat 3" },
-  ],
+  //chatList will be stored like this [{id, name, robot}]
+  chatList: [],
+  error: null,
 };
 
 export const chatsReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case ADD_CHAT: {
+    case SET_CHATS: {
       return {
         ...state,
-        chatList: [
-          ...state.chatList,
-          {
-            id: payload.chatId,
-            name: payload.name,
-          },
-        ],
+        chatList: payload,
       };
     }
-    case DELETE_CHAT: {
+    case SET_ERROR: {
       return {
         ...state,
-        chatList: [...state.chatList].filter(
-          (chat) => chat.id !== payload.chatId
-        ),
+        error: payload,
       };
     }
     default:

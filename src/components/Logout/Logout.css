@@ -1,0 +1,20 @@
+.logout__button {
+  box-sizing: border-box;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  background: #5a98d0;
+  cursor: pointer;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 500;
+  color: #fff;
+  display: inline-flex;
+  outline: 0;
+  padding: 4px 10px;
+  margin-top: -5px;
+  transition: all 0.3s;
+}
+
+.logout__button:hover {
+  color: #5a98d0;
+  background: #fff;
+}
